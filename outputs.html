@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>输出中心 · 股票学习系统</title>
+  <style>
+    :root{--bg:#07111f;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5;--accent2:#7aa2ff}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%);color:var(--text)}
+    .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 56px}.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-bottom:24px}.head h1{margin:0;font-size:34px}.muted{color:var(--muted)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}.nav a:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.nav a.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .hero,.section{padding:20px;border-radius:18px;background:var(--card);border:1px solid var(--line);margin-bottom:18px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.search{flex:1;min-width:240px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0c1830;color:var(--text);outline:none}.search:focus{border-color:var(--accent)}.chip{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#0c1830;color:#dce7ff;cursor:pointer}.chip.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .section h2{margin:0 0 14px 0;font-size:20px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:18px;border-radius:16px;background:#0d1830;border:1px solid var(--line)}.title{font-size:18px;font-weight:700;margin-bottom:8px}.summary{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:12px}.meta,.tags,.actions{display:flex;gap:8px;flex-wrap:wrap}.badge,.tag{padding:6px 10px;border-radius:999px;font-size:12px}.badge{background:#17345f}.tag{background:#142845;color:#cfe0ff}.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;text-decoration:none;color:#dce7ff;background:#132742;border:1px solid var(--line)}.btn:hover{border-color:var(--accent);color:#fff}.btn.primary{background:#17345f;color:#fff;border-color:var(--accent)}.empty{padding:18px;border-radius:16px;background:#0d1830;border:1px dashed var(--line);color:var(--muted)} .count{margin-bottom:12px;color:var(--muted)} .footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><div class="muted">Outputs · 股票学习系统</div><h1>输出中心</h1><div class="muted" style="margin-top:6px">按模板 / 研究简报分区，并统一进入站内阅读。</div></div>
+    <div class="nav"><a href="./index.html">首页</a><a href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a class="active" href="./outputs.html">输出中心</a><a href="./templates.html">录入模板</a></div>
+  </div>
+  <div class="hero">
+    <div>这里统一收口模板与研究简报，后续可以继续扩成导出、打印、复制等能力。</div>
+    <div class="toolbar"><input id="search" class="search" placeholder="搜索标题 / 主题，例如：高股息、模板、茅台" /><button class="chip" data-type="all">全部</button><button class="chip" data-type="template">模板</button><button class="chip" data-type="research-brief">研究简报</button></div>
+  </div>
+  <div class="section"><h2>模板</h2><div id="templateCount" class="count"></div><div class="grid" id="templateList"></div></div>
+  <div class="section"><h2>研究简报</h2><div id="briefCount" class="count"></div><div class="grid" id="briefList"></div></div>
+  <div class="footer"><span>输出中心</span><span>模板与简报统一收口</span></div>
+</div>
+<script>
+const search=document.getElementById('search'); const chips=[...document.querySelectorAll('.chip')]; const params=new URLSearchParams(location.search); let currentType=params.get('type')||'all'; search.value=params.get('q')||'';
+function syncUrl(){ const p=new URLSearchParams(); if(search.value.trim()) p.set('q',search.value.trim()); if(currentType!=='all') p.set('type',currentType); history.replaceState(null,'',location.pathname+(p.toString()?'?'+p.toString():'')); }
+function makeReaderLink(item){ return `./reader.html?file=${encodeURIComponent(item.link)}&title=${encodeURIComponent(item.title)}&from=${encodeURIComponent('./outputs.html'+location.search)}`; }
+fetch('./data/outputs.json').then(r=>{ if(!r.ok) throw new Error('outputs.json 加载失败'); return r.json(); }).then(data=>{
+  function card(item){ return `<div class="card"><div class="title">${item.title}</div><div class="summary">${item.summary||'暂无摘要'}</div><div class="meta"><span class="badge">${item.type}</span><span class="badge">${item.date||'—'}</span></div>${(item.relatedTopics||[]).length?`<div class="tags" style="margin-top:10px">${item.relatedTopics.map(t=>`<span class="tag">${t}</span>`).join('')}</div>`:''}<div class="actions" style="margin-top:14px"><a class="btn primary" href="${makeReaderLink(item)}">站内阅读</a><a class="btn" href="${item.link}" target="_blank">原文件</a></div></div>`; }
+  function render(){ const q=(search.value||'').trim().toLowerCase(); const filtered=data.filter(item=>{ const text=[item.title,item.summary||'',(item.relatedTopics||[]).join(' ')].join(' ').toLowerCase(); const typeOk=currentType==='all'||item.type===currentType; return typeOk&&(!q||text.includes(q)); }); const templates=filtered.filter(x=>x.type==='template'); const briefs=filtered.filter(x=>x.type==='research-brief'); document.getElementById('templateCount').textContent=`共 ${templates.length} 个模板`; document.getElementById('briefCount').textContent=`共 ${briefs.length} 份研究简报`; document.getElementById('templateList').innerHTML=templates.length?templates.map(card).join(''):'<div class="empty">没有匹配到模板</div>'; document.getElementById('briefList').innerHTML=briefs.length?briefs.map(card).join(''):'<div class="empty">没有匹配到研究简报</div>'; chips.forEach(ch=>ch.classList.toggle('active',ch.dataset.type===currentType)); syncUrl(); }
+  render(); search.addEventListener('input',render); chips.forEach(ch=>ch.addEventListener('click',()=>{ currentType=ch.dataset.type; render(); }));
+}).catch(err=>{ console.error(err); document.getElementById('templateList').innerHTML='<div class="empty">数据加载失败</div>'; document.getElementById('briefList').innerHTML='<div class="empty">数据加载失败</div>'; });
+</script>
+</body>
+</html>

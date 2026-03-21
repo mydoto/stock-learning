@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r-001",
+    "title": "公司财报",
+    "type": "source",
+    "topic": "个股研究",
+    "quality": "高",
+    "link": "https://www.cninfo.com.cn/",
+    "notes": "个股研究的一手材料来源。"
+  },
+  {
+    "id": "r-002",
+    "title": "国家统计局",
+    "type": "source",
+    "topic": "宏观数据",
+    "quality": "高",
+    "link": "https://www.stats.gov.cn/",
+    "notes": "宏观学习的重要数据源。"
+  }
+]

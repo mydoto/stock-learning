@@ -1,0 +1,175 @@
+[
+  {
+    "id": "k-001",
+    "title": "利率如何影响估值",
+    "category": "估值体系",
+    "priority": "P0",
+    "status": "未开始",
+    "difficulty": "中",
+    "summary": "理解无风险利率变化对成长股与价值股估值的影响。",
+    "tags": [
+      "利率",
+      "估值",
+      "DCF"
+    ],
+    "contentPath": "content/knowledge/interest-rate-and-valuation.md",
+    "relatedSectors": [
+      "sec-003"
+    ],
+    "relatedStocks": [
+      "s-003"
+    ],
+    "relatedOutputs": [
+      "o-003"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-003",
+    "title": "ROE 为什么重要",
+    "category": "财务指标",
+    "priority": "P0",
+    "status": "未开始",
+    "difficulty": "低",
+    "summary": "理解 ROE 作为资本回报指标的意义，并用杜邦分解拆清楚质量来源。",
+    "tags": [
+      "ROE",
+      "盈利能力",
+      "杜邦分析"
+    ],
+    "contentPath": "content/knowledge/roe-dupont.md",
+    "relatedSectors": [
+      "sec-006"
+    ],
+    "relatedStocks": [
+      "s-006"
+    ],
+    "relatedOutputs": [
+      "o-007"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-005",
+    "title": "商业模式分析框架",
+    "category": "个股研究",
+    "priority": "P1",
+    "status": "未开始",
+    "difficulty": "中",
+    "summary": "研究公司是怎么赚钱的、利润是否可持续、竞争优势能否维持。",
+    "tags": [
+      "商业模式",
+      "护城河",
+      "公司分析"
+    ],
+    "contentPath": "content/knowledge/business-model-framework.md",
+    "relatedSectors": [
+      "sec-007"
+    ],
+    "relatedStocks": [
+      "s-007"
+    ],
+    "relatedOutputs": [
+      "o-008"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-004",
+    "title": "行业景气度怎么判断",
+    "category": "行业研究",
+    "priority": "P1",
+    "status": "未开始",
+    "difficulty": "中",
+    "summary": "从需求、供给、价格、库存维度判断行业景气阶段。",
+    "tags": [
+      "景气度",
+      "行业",
+      "库存周期"
+    ],
+    "contentPath": "content/knowledge/sector-prosperity-framework.md",
+    "relatedSectors": [
+      "sec-008"
+    ],
+    "relatedStocks": [
+      "s-008"
+    ],
+    "relatedOutputs": [
+      "o-009"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-014",
+    "title": "预期差为什么重要",
+    "category": "交易复盘",
+    "priority": "P1",
+    "status": "未开始",
+    "difficulty": "低",
+    "summary": "理解股价反映的是预期变化，而不是事实本身。",
+    "tags": [
+      "预期差",
+      "交易"
+    ],
+    "contentPath": "content/knowledge/expectation-gap.md",
+    "relatedSectors": [
+      "sec-004"
+    ],
+    "relatedStocks": [
+      "s-004"
+    ],
+    "relatedOutputs": [
+      "o-005"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-016",
+    "title": "自由现金流怎么看",
+    "category": "财报分析",
+    "priority": "P1",
+    "status": "未开始",
+    "difficulty": "低",
+    "summary": "理解自由现金流对分红、回购、再投资和抗风险能力的意义。",
+    "tags": [
+      "自由现金流",
+      "FCF"
+    ],
+    "contentPath": "content/knowledge/free-cash-flow.md",
+    "relatedSectors": [
+      "sec-002"
+    ],
+    "relatedStocks": [
+      "s-002"
+    ],
+    "relatedOutputs": [
+      "o-004"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "k-021",
+    "title": "仓位管理与回撤控制",
+    "category": "交易复盘",
+    "priority": "P0",
+    "status": "学习中",
+    "difficulty": "中",
+    "summary": "把仓位当风险管理工具，通过分层仓位降低回撤、提升策略生存率。",
+    "tags": [
+      "仓位",
+      "回撤",
+      "风险管理"
+    ],
+    "contentPath": "content/knowledge/position-and-drawdown.md",
+    "relatedSectors": [
+      "sec-005"
+    ],
+    "relatedStocks": [
+      "s-005"
+    ],
+    "relatedOutputs": [
+      "o-006"
+    ],
+    "updatedAt": "2026-03-20"
+  }
+]

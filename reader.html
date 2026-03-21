@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>站内阅读 · 股票学习系统</title>
+  <style>
+    :root{--bg:#07111f;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%);color:var(--text)}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 20px 56px}.nav,.actions,.pager,.related{display:flex;gap:10px;flex-wrap:wrap}.nav a,.btn{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent;cursor:pointer}.nav a:hover,.btn:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.hero,.article,.source{padding:20px;border-radius:18px;background:var(--card);border:1px solid var(--line);margin-top:16px}.hero h1{margin:8px 0 10px 0;font-size:30px}.muted{color:var(--muted)} .btn.primary{background:#17345f;border-color:var(--accent);color:#fff}.meta{display:flex;gap:8px;flex-wrap:wrap}.badge{padding:6px 10px;border-radius:999px;font-size:12px;background:#17345f}.badge.type-template{background:#315f9b}.badge.type-research-brief{background:#1d6a59}.content{line-height:1.9;font-size:15px;color:#ebf3ff}.content h1,.content h2,.content h3{line-height:1.4}.content pre,.content code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.content pre{white-space:pre-wrap;background:#0d1830;padding:14px;border-radius:12px;border:1px solid var(--line);overflow:auto}.content blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--accent);background:#0d1830;border-radius:10px}.content a{color:#7fd9ff}.source code{display:block;padding:12px;border-radius:12px;background:#0d1830;border:1px solid var(--line);word-break:break-all}.rec-card{display:block;padding:12px 14px;border-radius:14px;background:#0d1830;border:1px solid var(--line);text-decoration:none;color:#ebf3ff;min-width:220px;flex:1}.rec-card:hover{border-color:var(--accent)}.rec-title{font-weight:700;margin-bottom:6px}.rec-desc{font-size:13px;color:var(--muted);line-height:1.6}.footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav"><a href="./index.html">首页</a><a href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a href="./outputs.html">输出中心</a><a href="./templates.html">录入模板</a></div>
+  <div id="app"></div>
+  <div class="footer"><span>站内阅读器</span><span>Markdown 内容统一收口</span></div>
+</div>
+<script>
+const app=document.getElementById('app');
+const params=new URLSearchParams(location.search); const file=params.get('file'); const title=params.get('title')||'站内阅读'; const from=params.get('from')||'./outputs.html';
+function esc(s){return (s||'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function renderMarkdown(md){
+  let html=esc(md);
+  html=html.replace(/^### (.*)$/gm,'<h3>$1</h3>');
+  html=html.replace(/^## (.*)$/gm,'<h2>$1</h2>');
+  html=html.replace(/^# (.*)$/gm,'<h1>$1</h1>');
+  html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  html=html.replace(/^- (.*)$/gm,'<li>$1</li>');
+  html=html.replace(/(<li>.*<\/li>\n?)+/g,m=>'<ul>'+m+'</ul>');
+  html=html.replace(/\n> (.*)/g,'<blockquote>$1</blockquote>');
+  html=html.replace(/\n```([\s\S]*?)```/g,'<pre><code>$1</code></pre>');
+  html=html.split(/\n\n+/).map(block=>/^<h\d|^<ul>|^<pre>|^<blockquote>/.test(block.trim())?block:`<p>${block.replace(/\n/g,'<br/>')}</p>`).join('');
+  return html;
+}
+function readerLink(item){ return `./reader.html?file=${encodeURIComponent(item.link)}&title=${encodeURIComponent(item.title)}&from=${encodeURIComponent('./outputs.html')}`; }
+if(!file){ app.innerHTML='<div class="hero"><div class="muted">Reader</div><h1>未指定内容文件</h1><p class="muted">请从输出中心或模板页进入。</p><div class="actions"><a class="btn primary" href="./outputs.html">去输出中心</a></div></div>'; }
+else{
+  Promise.all([
+    fetch(file).then(r=>{if(!r.ok) throw new Error('load-failed'); return r.text();}),
+    fetch('./data/outputs.json').then(r=>r.ok?r.json():[]).catch(()=>[])
+  ]).then(([text, outputs])=>{
+    const idx = outputs.findIndex(x => x.link === file || x.title === title);
+    const current = idx >= 0 ? outputs[idx] : null;
+    const prev = idx > 0 ? outputs[idx-1] : null;
+    const next = idx >= 0 && idx < outputs.length-1 ? outputs[idx+1] : null;
+    const currentTopics = new Set((current?.relatedTopics||[]));
+    const relatedItems = outputs.filter(x => x.link !== file).map(x => ({ item:x, score:(x.relatedTopics||[]).reduce((n,t)=>n+(currentTopics.has(t)?1:0),0) }))
+      .filter(x => x.score > 0).sort((a,b)=>b.score-a.score).slice(0,3).map(x => x.item);
+    const typeBadge = current ? `<span class="badge type-${current.type}">${current.type === 'template' ? '模板' : '研究简报'}</span>` : '';
+    app.innerHTML=`<div class="hero"><div class="muted">Reader</div><h1>${esc(title)}</h1><div class="meta"><span class="badge">Markdown</span>${typeBadge}<span class="badge">站内阅读</span></div><p class="muted" style="margin-top:12px">现在内容不再裸跳 .md 文件，而是在站内统一阅读。</p><div class="actions" style="margin-top:14px"><a class="btn" href="${from}">返回上一页</a><a class="btn" href="${file}" target="_blank">打开原文件</a><button id="copyBtn" class="btn primary">复制 Markdown</button></div></div><div class="source"><div class="muted" style="margin-bottom:8px">来源文件</div><code>${esc(file)}</code></div><div class="article"><div class="content">${renderMarkdown(text)}</div></div><div class="source"><div class="muted" style="margin-bottom:10px">上一篇 / 下一篇</div><div class="pager">${prev?`<a class="btn" href="${readerLink(prev)}">← ${esc(prev.title)}</a>`:'<span class="muted">已经是第一篇</span>'}${next?`<a class="btn" href="${readerLink(next)}">${esc(next.title)} →</a>`:'<span class="muted">已经是最后一篇</span>'}</div></div><div class="source"><div class="muted" style="margin-bottom:10px">相关输出推荐</div><div class="related">${relatedItems.length ? relatedItems.map(item => `<a class="rec-card" href="${readerLink(item)}"><div class="rec-title">${esc(item.title)}</div><div class="rec-desc">${esc(item.summary||'暂无摘要')}</div></a>`).join('') : '<span class="muted">暂时没有主题相近的输出</span>'}</div></div>`;
+    const copyBtn=document.getElementById('copyBtn'); if(copyBtn){ copyBtn.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(text); copyBtn.textContent='已复制'; setTimeout(()=>copyBtn.textContent='复制 Markdown',1500);}catch(e){ copyBtn.textContent='复制失败'; setTimeout(()=>copyBtn.textContent='复制 Markdown',1500);} }); }
+  }).catch(()=>{ app.innerHTML='<div class="hero"><div class="muted">Reader</div><h1>内容加载失败</h1><p class="muted">请检查文件路径或回到输出中心重试。</p><div class="actions"><a class="btn primary" href="./outputs.html">去输出中心</a></div></div>'; });
+}
+</script>
+</body>
+</html>

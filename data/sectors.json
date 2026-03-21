@@ -1,0 +1,230 @@
+[
+  {
+    "id": "sec-002",
+    "name": "白酒",
+    "thesis": "品牌力与渠道力，现金流质量是研究重点。",
+    "drivers": [
+      "消费能力",
+      "渠道库存",
+      "批价变化",
+      "提价能力"
+    ],
+    "leaders": [
+      "贵州茅台",
+      "五粮液",
+      "泸州老窖"
+    ],
+    "indicators": [
+      "批价",
+      "动销",
+      "库存",
+      "经营现金流"
+    ],
+    "contentPath": "content/sectors/baijiu.md",
+    "relatedKnowledge": [
+      "k-016"
+    ],
+    "relatedStocks": [
+      "s-002"
+    ],
+    "relatedOutputs": [
+      "o-004"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-003",
+    "name": "半导体设备",
+    "thesis": "国产替代与景气周期共振，高技术壁垒高资本开支敏感度。",
+    "drivers": [
+      "晶圆厂扩产",
+      "设备国产替代",
+      "政策扶持",
+      "AI 需求"
+    ],
+    "leaders": [
+      "北方华创",
+      "中微公司",
+      "拓荆科技"
+    ],
+    "indicators": [
+      "设备订单",
+      "晶圆厂 CAPEX",
+      "验证进度"
+    ],
+    "contentPath": "content/sectors/semiconductor.md",
+    "relatedKnowledge": [
+      "k-001"
+    ],
+    "relatedStocks": [
+      "s-003"
+    ],
+    "relatedOutputs": [
+      "o-003"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-004",
+    "name": "创新药",
+    "thesis": "估值受预期高度驱动，核心在管线质量和商业化能力。",
+    "drivers": [
+      "临床数据",
+      "新药获批",
+      "医保政策",
+      "海外授权"
+    ],
+    "leaders": [
+      "恒瑞医药",
+      "百济神州",
+      "信达生物"
+    ],
+    "indicators": [
+      "临床进展",
+      "销售放量",
+      "研发投入效率"
+    ],
+    "contentPath": "content/sectors/innovative-drugs.md",
+    "relatedKnowledge": [
+      "k-014"
+    ],
+    "relatedStocks": [
+      "s-004"
+    ],
+    "relatedOutputs": [
+      "o-005"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-005",
+    "name": "高股息",
+    "thesis": "防守价值，需验证分红可持续性与现金流匹配。",
+    "drivers": [
+      "分红政策",
+      "自由现金流",
+      "利率水平",
+      "周期波动"
+    ],
+    "leaders": [
+      "中国神华",
+      "中国移动",
+      "长江电力"
+    ],
+    "indicators": [
+      "股息率",
+      "分红率",
+      "现金流覆盖",
+      "资本开支"
+    ],
+    "contentPath": "content/sectors/high-dividend.md",
+    "relatedKnowledge": [
+      "k-021"
+    ],
+    "relatedStocks": [
+      "s-005"
+    ],
+    "relatedOutputs": [
+      "o-006"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-006",
+    "name": "消费",
+    "thesis": "长期看品牌渠道复购，高 ROE 龙头往往具备强定价权与护城河。",
+    "drivers": [
+      "品牌力",
+      "渠道深度",
+      "消费复苏",
+      "品类扩张"
+    ],
+    "leaders": [
+      "海天味业",
+      "伊利股份",
+      "青岛啤酒"
+    ],
+    "indicators": [
+      "ROE 变化",
+      "毛利率",
+      "渠道库存",
+      "动销"
+    ],
+    "contentPath": "content/sectors/consumer.md",
+    "relatedKnowledge": [
+      "k-003"
+    ],
+    "relatedStocks": [
+      "s-006"
+    ],
+    "relatedOutputs": [
+      "o-007"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-007",
+    "name": "物业管理",
+    "thesis": "轻资产高现金流强复购，核心在在管面积扩张与增值服务渗透。",
+    "drivers": [
+      "在管面积增速",
+      "增值服务渗透",
+      "第三方项目占比"
+    ],
+    "leaders": [
+      "华润万象生活",
+      "碧桂园服务",
+      "万物云"
+    ],
+    "indicators": [
+      "在管面积",
+      "增值渗透率",
+      "应收账款",
+      "收缴率"
+    ],
+    "contentPath": "content/sectors/property-mgmt.md",
+    "relatedKnowledge": [
+      "k-005"
+    ],
+    "relatedStocks": [
+      "s-007"
+    ],
+    "relatedOutputs": [
+      "o-008"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "sec-008",
+    "name": "化工",
+    "thesis": "典型景气驱动行业，供需与价差决定盈利拐点。",
+    "drivers": [
+      "产品价差",
+      "供给投放节奏",
+      "下游需求",
+      "库存周期"
+    ],
+    "leaders": [
+      "万华化学",
+      "华鲁恒升",
+      "荣盛石化"
+    ],
+    "indicators": [
+      "MDI 价差",
+      "行业开工率",
+      "库存",
+      "新增产能"
+    ],
+    "contentPath": "content/sectors/chemicals.md",
+    "relatedKnowledge": [
+      "k-004"
+    ],
+    "relatedStocks": [
+      "s-008"
+    ],
+    "relatedOutputs": [
+      "o-009"
+    ],
+    "updatedAt": "2026-03-20"
+  }
+]

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>知识点池 · 股票学习系统</title>
+  <style>
+    :root{--bg:#07111f;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%);color:var(--text)}
+    .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 56px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-bottom:20px}.top h1{margin:0;font-size:34px}.muted{color:var(--muted)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}.nav a:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.nav a.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 24px}.search{flex:1;min-width:240px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0c1830;color:var(--text);outline:none}.search:focus{border-color:var(--accent)}.chip{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#0c1830;color:#dce7ff;cursor:pointer}.chip.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card{padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line)}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.badge{padding:4px 10px;border-radius:999px;font-size:12px;background:#17345f;color:#dce7ff}.title{font-size:17px;font-weight:700;margin:0 0 8px 0}.summary{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:12px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tag{padding:4px 10px;border-radius:999px;font-size:12px;background:#142845;color:#cfe0ff}.go{color:#7fd9ff;text-decoration:none;font-size:14px}.go:hover{color:var(--accent)}.empty{padding:24px;border-radius:16px;background:var(--card);border:1px dashed var(--line);color:var(--muted)}
+    .footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><div class="muted">Knowledge Pool</div><h1>知识点池</h1><div class="muted" style="margin-top:6px">管理学习主题、优先级、状态与关联研究链路。</div></div><div class="nav"><a href="./index.html">首页</a><a class="active" href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a href="./outputs.html">输出中心</a></div></div>
+  <div class="toolbar"><input id="searchInput" class="search" placeholder="搜索知识点、标签、摘要，例如：ROE、现金流、景气度" /><button class="chip" data-filter="all">全部</button><button class="chip" data-filter="估值体系">估值体系</button><button class="chip" data-filter="财报分析">财报分析</button><button class="chip" data-filter="交易复盘">交易复盘</button><button class="chip" data-filter="行业研究">行业研究</button><button class="chip" data-filter="个股研究">个股研究</button><button class="chip" data-filter="财务指标">财务指标</button></div>
+  <div id="resultCount" class="muted" style="margin-bottom:12px"></div><div id="grid" class="grid"></div>
+  <div class="footer"><span>知识点池</span><span>支持关键词搜索、分类筛选、详情跳转</span></div>
+</div>
+<script>
+let currentFilter = 'all'; const grid = document.getElementById('grid'); const resultCount = document.getElementById('resultCount'); const searchInput = document.getElementById('searchInput'); const chips = [...document.querySelectorAll('.chip')]; let items = []; const params = new URLSearchParams(location.search); currentFilter = params.get('filter') || 'all'; searchInput.value = params.get('q') || '';
+function syncUrl(){ const p = new URLSearchParams(); if(searchInput.value.trim()) p.set('q', searchInput.value.trim()); if(currentFilter !== 'all') p.set('filter', currentFilter); history.replaceState(null,'', location.pathname + (p.toString() ? '?' + p.toString() : '')); }
+function render(){ const q = (searchInput.value||'').trim().toLowerCase(); const filtered = items.filter(item => { const text = [item.title,item.summary,item.category,...(item.tags||[])].join(' ').toLowerCase(); const ok = currentFilter==='all' || item.category===currentFilter; return ok && (!q || text.includes(q)); }); chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === currentFilter)); resultCount.textContent = `共 ${filtered.length} 个知识点`; grid.innerHTML = filtered.length ? filtered.map(item => `<div class="card"><div class="meta"><span class="badge">${item.category||'—'}</span><span class="badge">${item.priority||'—'}</span><span class="badge">${item.status||'—'}</span><span class="badge">${item.difficulty||'—'}</span></div><div class="title">${item.title}</div><div class="summary">${item.summary||''}</div>${(item.tags||[]).length ? `<div class="tags">${(item.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : ''}<a class="go" href="./knowledge-detail.html?id=${item.id}">查看详情 →</a></div>`).join('') : '<div class="empty">没有匹配结果，换个关键词试试。</div>'; syncUrl(); }
+fetch('./data/knowledge-pool.json').then(r=>r.json()).then(data=>{items=data;render();}).catch(()=>{grid.innerHTML='<div class="empty">数据加载失败</div>';}); searchInput.addEventListener('input', render); chips.forEach(chip=>chip.addEventListener('click', ()=>{currentFilter=chip.dataset.filter;render();}));
+</script>
+</body>
+</html>

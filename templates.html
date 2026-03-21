@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>录入模板 · 股票学习系统</title>
+  <style>
+    :root{--bg:#07111f;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%);color:var(--text)}
+    .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 56px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-bottom:20px}.top h1{margin:0;font-size:34px}.muted{color:var(--muted)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}.nav a:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.nav a.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .hero,.card,.mini{padding:20px;border-radius:18px;background:var(--card);border:1px solid var(--line)}.hero{margin-bottom:18px}.hero h2{margin:0 0 10px 0;font-size:22px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.title{font-size:18px;font-weight:700;margin-bottom:8px}.desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+    .chips,.list,.actions{display:flex;gap:8px;flex-wrap:wrap}.list{flex-direction:column;gap:6px;color:#dce7ff;font-size:14px}.chip{padding:6px 10px;border-radius:999px;font-size:12px;background:#142845;color:#cfe0ff}.subgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.mini h3{margin:0 0 8px 0;font-size:16px}.mini p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;text-decoration:none;color:#fff;background:#17345f;border:1px solid var(--line)}.btn:hover{border-color:var(--accent)}.btn.secondary{background:#0d1e3a;color:#dce7ff}.footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.grid,.subgrid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><div class="muted">Research Input Studio</div><h1>录入模板</h1><div class="muted" style="margin-top:6px">模板不只是展示，现在可以直接进入站内阅读。</div></div>
+    <div class="nav"><a href="./index.html">首页</a><a href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a href="./outputs.html">输出中心</a><a class="active" href="./templates.html">录入模板</a></div>
+  </div>
+  <div class="hero"><h2>研究录入台</h2><div class="desc">你可以从这里直接打开模板正文，再回到输出中心或对应列表继续推进。</div><div class="chips"><span class="chip">日报</span><span class="chip">周报</span><span class="chip">行业研究</span><span class="chip">个股研究</span><span class="chip">交易复盘</span><span class="chip">研究简报</span></div></div>
+  <div class="grid">
+    <div class="card"><div class="title">日报模板</div><div class="desc">适合记录每日市场表现、重点标的变化与次日观察清单。</div><div class="list"><div>1. 今日市场环境</div><div>2. 核心板块表现</div><div>3. 重点个股异动</div><div>4. 判断变化</div><div>5. 明日观察清单</div></div><div class="actions" style="margin-top:14px"><a class="btn" href="./reader.html?file=./content/outputs/daily-review-template.md&title=%E6%AF%8F%E6%97%A5%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF&from=./templates.html">打开模板</a><a class="btn secondary" href="./outputs.html?type=template&q=每日">去输出中心</a></div></div>
+    <div class="card"><div class="title">周报模板</div><div class="desc">适合把一周市场、行业、个股、仓位变化压缩成结构化总结。</div><div class="list"><div>1. 本周关键事件</div><div>2. 行业景气度变化</div><div>3. 重点持仓 / 观察股变化</div><div>4. 验证与证伪</div><div>5. 下周研究计划</div></div><div class="actions" style="margin-top:14px"><a class="btn" href="./reader.html?file=./content/outputs/weekly-summary-template.md&title=%E5%91%A8%E5%BA%A6%E7%A0%94%E7%A9%B6%E6%80%BB%E7%BB%93%E6%A8%A1%E6%9D%BF&from=./templates.html">打开模板</a><a class="btn secondary" href="./outputs.html?type=template&q=周度">去输出中心</a></div></div>
+    <div class="card"><div class="title">行业研究模板</div><div class="desc">适合建立行业逻辑树：定义、驱动、景气、格局、预期差。</div><div class="list"><div>1. 行业定义与边界</div><div>2. 核心驱动因素</div><div>3. 关键跟踪指标</div><div>4. 龙头与格局</div><div>5. 投资视角</div></div><div class="actions" style="margin-top:14px"><a class="btn" href="./reader.html?file=./content/outputs/sector-research-template.md&title=%E8%A1%8C%E4%B8%9A%E7%A0%94%E7%A9%B6%E6%A8%A1%E6%9D%BF&from=./templates.html">打开模板</a><a class="btn secondary" href="./sectors.html">去行业库</a></div></div>
+    <div class="card"><div class="title">个股研究模板</div><div class="desc">适合围绕商业模式、财务指标、催化剂与估值建立个股跟踪框架。</div><div class="list"><div>1. 公司概况</div><div>2. 投资逻辑</div><div>3. 财务与经营指标</div><div>4. 核心催化剂</div><div>5. 风险与估值</div></div><div class="actions" style="margin-top:14px"><a class="btn" href="./reader.html?file=./content/outputs/stock-research-template.md&title=%E4%B8%AA%E8%82%A1%E7%A0%94%E7%A9%B6%E6%A8%A1%E6%9D%BF&from=./templates.html">打开模板</a><a class="btn secondary" href="./stocks.html">去个股库</a></div></div>
+  </div>
+  <div class="subgrid"><div class="mini"><h3>如何开始</h3><p>先从知识点池确认研究问题，再进入行业 / 个股库补足上下文，最后在输出中心沉淀成模板或简报。</p></div><div class="mini"><h3>推荐顺序</h3><p>知识点 → 行业 → 个股 → 输出。先有问题，再组织素材，最后形成表达。</p></div><div class="mini"><h3>当前阶段</h3><p>现在站点已经能从模板入口直达正文，离“真正可用”又近了一步。</p></div></div>
+  <div class="footer"><span>录入模板</span><span>模板卡片已支持站内阅读</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>知识详情 · 股票学习系统</title>
+  <style>
+    :root{--bg:#07111f;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%);color:var(--text)}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 56px}.nav,.crumbs,.actions{display:flex;gap:10px;flex-wrap:wrap}.nav a,.crumbs a,.action{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}.nav a:hover,.crumbs a:hover,.action:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.nav a.active{background:#17345f;border-color:var(--accent);color:#fff}.action.primary{background:#17345f;border-color:var(--accent);color:#fff}h1{margin:10px 0 8px;font-size:34px}.muted{color:var(--muted)}
+    .hero,.sec{padding:20px;border-radius:18px;background:var(--card);border:1px solid var(--line);margin-top:16px}.meta,.tags,.links{display:flex;gap:8px;flex-wrap:wrap}.badge,.tag,.link-chip{padding:6px 10px;border-radius:999px;font-size:12px}.badge{background:#17345f}.tag{background:#142845;color:#cfe0ff}.link-chip{background:#0d1e3a;border:1px solid var(--line);color:#d9e6ff;text-decoration:none}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.title{font-size:18px;font-weight:700;margin-bottom:12px}.empty{color:var(--muted)} .footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px} @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav"><a href="./index.html">首页</a><a class="active" href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a href="./outputs.html">输出中心</a></div>
+  <div id="app"></div>
+  <div class="footer"><span>知识详情</span><span>支持关联行业 / 个股 / 输出联动跳转</span></div>
+</div>
+<script>
+const app = document.getElementById('app'); const id = new URLSearchParams(location.search).get('id');
+Promise.all([fetch('./data/knowledge-pool.json').then(r=>r.json()),fetch('./data/sectors.json').then(r=>r.json()),fetch('./data/stocks.json').then(r=>r.json()),fetch('./data/outputs.json').then(r=>r.json())]).then(([knowledge, sectors, stocks, outputs]) => {
+  const item = knowledge.find(x => x.id === id); if(!item){ app.innerHTML = '<div class="hero"><h1>未找到该知识点</h1><div class="muted">请返回列表重新选择。</div></div>'; return; }
+  const sectorMap = Object.fromEntries(sectors.map(x=>[x.id,x])); const stockMap = Object.fromEntries(stocks.map(x=>[x.id,x])); const outputMap = Object.fromEntries(outputs.map(x=>[x.id,x]));
+  const sectorLinks = (item.relatedSectors||[]).map(sid => sectorMap[sid] ? `<a class="link-chip" href="./sector-detail.html?id=${sid}">${sectorMap[sid].name}</a>` : '').join('');
+  const stockLinks = (item.relatedStocks||[]).map(sid => stockMap[sid] ? `<a class="link-chip" href="./stock-detail.html?id=${sid}">${stockMap[sid].name}</a>` : '').join('');
+  const outputLinks = (item.relatedOutputs||[]).map(oid => outputMap[oid] ? `<a class="link-chip" href="./outputs.html?q=${encodeURIComponent(outputMap[oid].title)}">${outputMap[oid].title}</a>` : '').join('');
+  const firstOutput = (item.relatedOutputs||[])[0] && outputMap[(item.relatedOutputs||[])[0]];
+  app.innerHTML = `<div class="crumbs" style="margin-top:14px"><a href="./index.html">首页</a><a href="./knowledge.html">知识点池</a><a href="javascript:void(0)">${item.title}</a></div><div class="hero"><div class="muted">Knowledge Detail</div><h1>${item.title}</h1><div class="meta"><span class="badge">${item.category||'—'}</span><span class="badge">${item.priority||'—'}</span><span class="badge">${item.status||'—'}</span><span class="badge">${item.difficulty||'—'}</span></div><p class="muted" style="margin-top:14px;line-height:1.8">${item.summary||'暂无摘要'}</p>${(item.tags||[]).length ? `<div class="tags">${item.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : ''}<div class="actions" style="margin-top:14px"><a class="action" href="./knowledge.html">返回知识点池</a><a class="action" href="./templates.html">去录入模板</a>${firstOutput ? `<a class="action primary" href="./outputs.html?q=${encodeURIComponent(firstOutput.title)}">查看相关输出</a>` : `<a class="action primary" href="./outputs.html">去输出中心</a>`}</div></div><div class="grid"><div class="sec"><div class="title">关联行业</div><div class="links">${sectorLinks || '<span class="empty">暂无关联行业</span>'}</div></div><div class="sec"><div class="title">关联个股</div><div class="links">${stockLinks || '<span class="empty">暂无关联个股</span>'}</div></div><div class="sec" style="grid-column:1/-1"><div class="title">关联输出</div><div class="links">${outputLinks || '<span class="empty">暂无关联输出</span>'}</div></div></div>`;
+}).catch(()=>{ app.innerHTML = '<div class="hero"><h1>数据加载失败</h1></div>'; });
+</script>
+</body>
+</html>

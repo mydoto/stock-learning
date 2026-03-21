@@ -1,0 +1,118 @@
+[
+  {
+    "id": "o-001",
+    "title": "每日复盘模板",
+    "type": "template",
+    "date": "2026-03-20",
+    "summary": "用于记录每日市场表现、核心板块、重点个股变化与次日观察点。",
+    "relatedTopics": [
+      "交易复盘",
+      "市场观察"
+    ],
+    "link": "./content/outputs/daily-review-template.md"
+  },
+  {
+    "id": "o-002",
+    "title": "周度研究总结模板",
+    "type": "template",
+    "date": "2026-03-20",
+    "summary": "用于沉淀一周市场、行业、个股与仓位变化，把零散观察压缩为结构化结论。",
+    "relatedTopics": [
+      "交易复盘",
+      "周报",
+      "研究总结"
+    ],
+    "link": "./content/outputs/weekly-summary-template.md"
+  },
+  {
+    "id": "o-003",
+    "title": "行业研究模板",
+    "type": "template",
+    "date": "2026-03-20",
+    "summary": "围绕行业定义、驱动因素、景气阶段、竞争格局和投资视角建立标准化研究框架。",
+    "relatedTopics": [
+      "行业研究",
+      "景气度",
+      "竞争格局"
+    ],
+    "link": "./content/outputs/sector-research-template.md"
+  },
+  {
+    "id": "o-004",
+    "title": "个股研究模板",
+    "type": "template",
+    "date": "2026-03-20",
+    "summary": "围绕公司概况、投资逻辑、财务指标、催化剂、风险与估值形成标准化个股研究。",
+    "relatedTopics": [
+      "个股研究",
+      "财务指标",
+      "估值体系"
+    ],
+    "link": "./content/outputs/stock-research-template.md"
+  },
+  {
+    "id": "o-005",
+    "title": "自由现金流与茅台估值简报",
+    "type": "research-brief",
+    "date": "2026-03-20",
+    "summary": "用自由现金流视角看高端白酒龙头的估值锚与安全边际。",
+    "relatedTopics": [
+      "自由现金流",
+      "估值体系",
+      "白酒"
+    ],
+    "link": "./content/outputs/fcf-and-moutai-report.md"
+  },
+  {
+    "id": "o-006",
+    "title": "预期差与创新药景气度简报",
+    "type": "research-brief",
+    "date": "2026-03-20",
+    "summary": "从预期差框架出发，观察创新药行业的估值修复与景气拐点。",
+    "relatedTopics": [
+      "预期差",
+      "创新药",
+      "景气度"
+    ],
+    "link": "./content/outputs/expectation-gap-and-innovative-drugs-report.md"
+  },
+  {
+    "id": "o-007",
+    "title": "仓位管理与高股息策略简报",
+    "type": "research-brief",
+    "date": "2026-03-20",
+    "summary": "把仓位管理与回撤控制应用到高股息策略中，强调收益与波动的平衡。",
+    "relatedTopics": [
+      "仓位管理",
+      "高股息",
+      "回撤控制"
+    ],
+    "link": "./content/outputs/position-and-high-dividend-report.md"
+  },
+  {
+    "id": "o-008",
+    "title": "利率与半导体估值修复简报",
+    "type": "research-brief",
+    "date": "2026-03-20",
+    "summary": "从利率周期与库存周期共振角度，观察半导体板块的估值修复逻辑。",
+    "relatedTopics": [
+      "利率周期",
+      "半导体",
+      "估值修复"
+    ],
+    "link": "./content/outputs/rate-and-semiconductor-report.md"
+  },
+  {
+    "id": "o-009",
+    "title": "提价能力与调味品龙头简报",
+    "type": "research-brief",
+    "date": "2026-03-20",
+    "summary": "围绕品牌、渠道与提价传导能力，评估调味品龙头的盈利质量与估值修复。",
+    "relatedTopics": [
+      "提价能力",
+      "调味品",
+      "消费护城河"
+    ],
+    "link": "./content/outputs/pricing-power-and-condiments-report.md"
+  }
+]

@@ -1,0 +1,219 @@
+[
+  {
+    "id": "s-002",
+    "name": "贵州茅台",
+    "ticker": "600519.SH",
+    "sector": "白酒",
+    "thesis": "品牌力与渠道控制力驱动，用自由现金流视角验证质量。",
+    "metrics": [
+      "收入增长",
+      "净利率",
+      "经营现金流",
+      "渠道库存"
+    ],
+    "risks": [
+      "消费疲弱",
+      "政策扰动",
+      "估值过高"
+    ],
+    "watchlist": [
+      "批价变化",
+      "经销商库存",
+      "自由现金流质量"
+    ],
+    "contentPath": "content/stocks/kweichow-moutai.md",
+    "relatedKnowledge": [
+      "k-016"
+    ],
+    "relatedOutputs": [
+      "o-004"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-003",
+    "name": "北方华创",
+    "ticker": "002371.SZ",
+    "sector": "半导体设备",
+    "thesis": "受益于国产替代与晶圆厂扩产周期，是半导体设备研究的样板标的。",
+    "metrics": [
+      "收入增速",
+      "毛利率",
+      "研发投入",
+      "经营现金流"
+    ],
+    "risks": [
+      "资本开支波动",
+      "技术兑现不及预期",
+      "行业周期下行"
+    ],
+    "watchlist": [
+      "设备验证进展",
+      "大客户订单",
+      "国产替代节奏"
+    ],
+    "contentPath": "content/stocks/naura.md",
+    "relatedKnowledge": [
+      "k-001"
+    ],
+    "relatedOutputs": [
+      "o-003"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-004",
+    "name": "恒瑞医药",
+    "ticker": "600276.SH",
+    "sector": "创新药",
+    "thesis": "关注创新药管线兑现与商业化，是预期差研究的样板标的。",
+    "metrics": [
+      "研发费用率",
+      "新产品收入占比",
+      "经营现金流",
+      "商业化放量"
+    ],
+    "risks": [
+      "临床失败",
+      "审批不及预期",
+      "政策变化"
+    ],
+    "watchlist": [
+      "重点管线进展",
+      "新药获批",
+      "海外授权"
+    ],
+    "contentPath": "content/stocks/hengrui.md",
+    "relatedKnowledge": [
+      "k-014"
+    ],
+    "relatedOutputs": [
+      "o-005"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-005",
+    "name": "中国神华",
+    "ticker": "601088.SH",
+    "sector": "高股息",
+    "thesis": "高股息与现金流能力提供防守属性，仓位管理决定最终体验。",
+    "metrics": [
+      "经营现金流",
+      "股息率",
+      "分红率",
+      "资本开支"
+    ],
+    "risks": [
+      "煤价下行",
+      "分红政策变化",
+      "周期误判"
+    ],
+    "watchlist": [
+      "现金流覆盖分红",
+      "煤价趋势",
+      "资本开支变化"
+    ],
+    "contentPath": "content/stocks/china-shenhua.md",
+    "relatedKnowledge": [
+      "k-021"
+    ],
+    "relatedOutputs": [
+      "o-006"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-006",
+    "name": "海天味业",
+    "ticker": "603288.SH",
+    "sector": "消费",
+    "thesis": "调味品龙头，凭借品牌与渠道实现稳定高 ROE，是消费 ROE 研究样板标的。",
+    "metrics": [
+      "ROE",
+      "净利率",
+      "资产周转率",
+      "渠道库存"
+    ],
+    "risks": [
+      "品类扩张失败",
+      "竞争加剧",
+      "消费降级"
+    ],
+    "watchlist": [
+      "ROE 杜邦拆解变化",
+      "动销与库存",
+      "费用率趋势"
+    ],
+    "contentPath": "content/stocks/haitian.md",
+    "relatedKnowledge": [
+      "k-003"
+    ],
+    "relatedOutputs": [
+      "o-007"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-007",
+    "name": "华润万象生活",
+    "ticker": "01209.HK",
+    "sector": "物业管理",
+    "thesis": "高端商业运营能力强，轻资产扩张，是商业模式分析样板标的。",
+    "metrics": [
+      "在管面积增速",
+      "商业出租率",
+      "增值服务渗透率",
+      "应收账款"
+    ],
+    "risks": [
+      "商业地产景气下行",
+      "关联方风险",
+      "增值服务不及预期"
+    ],
+    "watchlist": [
+      "商业在管面积",
+      "出租率变化",
+      "应收账款账期"
+    ],
+    "contentPath": "content/stocks/cr-mixc.md",
+    "relatedKnowledge": [
+      "k-005"
+    ],
+    "relatedOutputs": [
+      "o-008"
+    ],
+    "updatedAt": "2026-03-20"
+  },
+  {
+    "id": "s-008",
+    "name": "万华化学",
+    "ticker": "600309.SH",
+    "sector": "化工",
+    "thesis": "MDI 龙头，成本曲线优势显著，是化工景气度分析经典标的。",
+    "metrics": [
+      "MDI 价差",
+      "产能利用率",
+      "开工率",
+      "库存水平"
+    ],
+    "risks": [
+      "需求下行",
+      "新增产能压制价差",
+      "原料波动"
+    ],
+    "watchlist": [
+      "MDI 现货价格",
+      "行业开工率",
+      "竞争对手扩产"
+    ],
+    "contentPath": "content/stocks/wanhua.md",
+    "relatedKnowledge": [
+      "k-004"
+    ],
+    "relatedOutputs": [
+      "o-009"
+    ],
+    "updatedAt": "2026-03-20"
+  }
+]

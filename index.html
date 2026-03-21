@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Learning OS</title>
+  <style>
+    :root{--bg:#081221;--card:#111c35cc;--text:#eef4ff;--muted:#97a9d6;--line:#22345f;--accent:#56e0c5}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:radial-gradient(circle at top left,#102447 0,#081221 45%,#06101d 100%)}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 56px}.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap}.head h1{margin:0;font-size:38px;letter-spacing:-.5px}.muted{color:var(--muted)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{color:#d7e3ff;text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid transparent}.nav a:hover{color:var(--accent);border-color:var(--line);background:#0d1830}.nav a.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .hero-guide{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:22px}.hero-card,.quick-card,.kpi-card,.chain-card,.prog-card,.feed-card,.topic-card{padding:18px 20px;border-radius:16px;background:#111c35cc;border:1px solid var(--line)}
+    .hero-card h2,.quick-card h2{margin:0 0 12px 0;font-size:22px}.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;text-decoration:none;color:#fff;background:#17345f;border:1px solid var(--line)}.btn:hover{border-color:var(--accent)}.btn.secondary{background:#0d1e3a;color:#dce7ff}
+    .quick-list{display:flex;flex-direction:column;gap:10px}.quick-item{padding:12px 14px;border-radius:12px;background:#0d1830;border:1px solid var(--line)}.quick-item b{display:block;margin-bottom:4px}
+    .kpi-grid,.side-grid,.prog-grid,.chain-grid{display:grid;gap:14px}.kpi-grid{grid-template-columns:repeat(4,1fr);margin-bottom:22px}.side-grid{grid-template-columns:1fr 1fr;margin-bottom:28px}.chain-grid{grid-template-columns:repeat(3,1fr)}.prog-grid{grid-template-columns:repeat(3,1fr)}
+    .kpi-label{color:var(--muted);font-size:13px}.kpi-val{font-size:32px;font-weight:700;margin:6px 0 4px}.kpi-sub{font-size:12px;color:var(--muted)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px 0}.search{flex:1;min-width:240px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0c1830;color:var(--text);outline:none}.search:focus{border-color:var(--accent)}
+    .chip{padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:#0c1830;color:#dce7ff;cursor:pointer}.chip.active{background:#17345f;border-color:var(--accent);color:#fff}
+    .sec h2,.progress-row h2{margin:0 0 14px 0;font-size:20px}.chain-title{font-weight:600;font-size:15px;margin-bottom:10px}
+    .chain-path{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}.chain-node{padding:4px 10px;border-radius:8px;background:#17345f;color:#dce7ff}.chain-arrow{color:var(--muted)}.chain-footer{margin-top:12px;padding-top:10px;border-top:1px solid rgba(151,169,214,.15)}
+    .go{color:#7fd9ff;text-decoration:none;font-size:13px}.go:hover{color:var(--accent)}.empty{padding:24px;border-radius:16px;background:#111c35cc;border:1px dashed var(--line);color:var(--muted)}
+    .prog-label{font-size:13px;color:var(--muted);margin-bottom:8px}.prog-bar-bg{height:6px;background:#17345f;border-radius:3px;overflow:hidden}.prog-bar{height:6px;border-radius:3px;background:var(--accent)}.prog-val{font-size:12px;color:var(--muted);margin-top:6px}
+    .feed-item{display:block;padding:12px 14px;border-radius:12px;background:#0d1830;border:1px solid var(--line);text-decoration:none;color:#eef4ff;margin-bottom:10px}.feed-item:hover,.topic-card a:hover{border-color:var(--accent)}.feed-title{font-weight:700;margin-bottom:4px}.feed-meta{font-size:12px;color:var(--muted)} .topic-wrap{display:flex;gap:8px;flex-wrap:wrap}.topic-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:#0d1830;border:1px solid var(--line);text-decoration:none;color:#dce7ff;font-size:13px}
+    .footer{margin-top:34px;padding-top:18px;border-top:1px solid rgba(151,169,214,.16);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.hero-guide,.kpi-grid,.chain-grid,.prog-grid,.side-grid{grid-template-columns:1fr 1fr}.head{flex-direction:column;align-items:flex-start}} @media(max-width:600px){.hero-guide,.kpi-grid,.chain-grid,.prog-grid,.side-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><div class="muted">Personal Research Dashboard</div><h1>Stock Learning OS</h1><div class="muted" style="margin-top:6px">从知识学习到研究输出，形成可复用、可追踪、可迭代的个人投研系统。</div></div>
+    <div class="nav"><a class="active" href="./index.html">首页</a><a href="./knowledge.html">知识点池</a><a href="./stocks.html">个股库</a><a href="./sectors.html">行业库</a><a href="./outputs.html">输出中心</a><a href="./templates.html">录入模板</a></div>
+  </div>
+  <div class="hero-guide">
+    <div class="hero-card"><h2>快速开始</h2><div class="muted">如果你是第一次进来，推荐按这个顺序走：先选研究问题，再看行业和个股，最后沉淀成输出。</div><div class="cta-row"><a class="btn" href="./knowledge.html">1. 从知识点开始</a><a class="btn secondary" href="./templates.html">2. 打开录入模板</a><a class="btn secondary" href="./outputs.html">3. 查看已有输出</a></div></div>
+    <div class="quick-card"><h2>推荐路径</h2><div class="quick-list"><div class="quick-item"><b>先学</b><span class="muted">去知识点池，找到当前最值得研究的问题。</span></div><div class="quick-item"><b>再看</b><span class="muted">去行业库 / 个股库，补足上下文与标的映射。</span></div><div class="quick-item"><b>最后写</b><span class="muted">去录入模板和输出中心，沉淀成可复用结论。</span></div></div></div>
+  </div>
+  <div class="kpi-grid" id="kpiGrid"></div>
+  <div class="side-grid"><div class="feed-card"><h2 style="margin:0 0 12px 0;font-size:20px">最近新增内容</h2><div id="recentFeed"></div></div><div class="topic-card"><h2 style="margin:0 0 12px 0;font-size:20px">热门主题</h2><div class="topic-wrap" id="hotTopics"></div></div></div>
+  <div class="sec">
+    <h2>研究链路</h2>
+    <div class="toolbar"><input id="chainSearch" class="search" placeholder="搜索知识点 / 行业 / 个股，例如：高股息、ROE、万华" /><button class="chip" data-filter="all">全部</button><button class="chip" data-filter="财报分析">财报分析</button><button class="chip" data-filter="交易复盘">交易复盘</button><button class="chip" data-filter="行业研究">行业研究</button><button class="chip" data-filter="个股研究">个股研究</button><button class="chip" data-filter="财务指标">财务指标</button><button class="chip" data-filter="估值体系">估值体系</button></div>
+    <div id="chainCount" class="muted" style="margin-bottom:12px"></div>
+    <div class="chain-grid" id="chainGrid"></div>
+  </div>
+  <div class="progress-row"><h2>学习进度</h2><div class="prog-grid" id="progGrid"></div></div>
+  <div class="footer"><span>Stock Learning OS · 个人投研知识操作系统原型</span><span>搜索 · 筛选 · 跳转 · 详情闭环</span></div>
+</div>
+<script>
+let currentFilter = 'all';
+const chainSearch = document.getElementById('chainSearch');
+const filterChips = [...document.querySelectorAll('.chip')];
+const params = new URLSearchParams(location.search);
+currentFilter = params.get('filter') || 'all';
+chainSearch.value = params.get('q') || '';
+function syncUrl(){ const p = new URLSearchParams(); if(chainSearch.value.trim()) p.set('q', chainSearch.value.trim()); if(currentFilter !== 'all') p.set('filter', currentFilter); history.replaceState(null,'', location.pathname + (p.toString() ? '?' + p.toString() : '')); }
+Promise.all([fetch('./data/knowledge-pool.json').then(r=>r.json()),fetch('./data/sectors.json').then(r=>r.json()),fetch('./data/stocks.json').then(r=>r.json()),fetch('./data/outputs.json').then(r=>r.json())]).then(([knowledge, sectors, stocks, outputs]) => {
+  const briefs = outputs.filter(x=>x.type==='research-brief'); const templates = outputs.filter(x=>x.type==='template'); const done = knowledge.filter(x=>x.status==='已完成').length; const learning = knowledge.filter(x=>x.status==='学习中').length; const sectorMap = Object.fromEntries(sectors.map(x=>[x.id,x.name])); const stockMap = Object.fromEntries(stocks.map(x=>[x.id,x.name])); const outputMap = Object.fromEntries(outputs.map(x=>[x.id,x]));
+  document.getElementById('kpiGrid').innerHTML = `<div class="kpi-card"><div class="kpi-label">知识点总数</div><div class="kpi-val">${knowledge.length}</div><div class="kpi-sub">已完成 ${done} · 学习中 ${learning}</div></div><div class="kpi-card"><div class="kpi-label">行业覆盖</div><div class="kpi-val">${sectors.length}</div><div class="kpi-sub">含研究简报 ${sectors.filter(s=>(s.relatedOutputs||[]).length>0).length} 个</div></div><div class="kpi-card"><div class="kpi-label">个股入库</div><div class="kpi-val">${stocks.length}</div><div class="kpi-sub">含研究简报 ${stocks.filter(s=>(s.relatedOutputs||[]).length>0).length} 只</div></div><div class="kpi-card"><div class="kpi-label">研究输出</div><div class="kpi-val">${outputs.length}</div><div class="kpi-sub">模板 ${templates.length} · 简报 ${briefs.length}</div></div>`;
+  const recent = [...outputs].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,5); document.getElementById('recentFeed').innerHTML = recent.map(item => `<a class="feed-item" href="./reader.html?file=${encodeURIComponent(item.link)}&title=${encodeURIComponent(item.title)}&from=${encodeURIComponent('./index.html')}"><div class="feed-title">${item.title}</div><div class="feed-meta">${item.type} · ${item.date||'—'}</div></a>`).join('');
+  const topicCount = {}; outputs.forEach(o => (o.relatedTopics||[]).forEach(t => topicCount[t] = (topicCount[t]||0) + 1)); const hotTopics = Object.entries(topicCount).sort((a,b)=>b[1]-a[1]).slice(0,8); document.getElementById('hotTopics').innerHTML = hotTopics.map(([topic,count]) => `<a class="topic-pill" href="./outputs.html?q=${encodeURIComponent(topic)}">${topic}<span class="muted">${count}</span></a>`).join('');
+  function renderChains(){ const q = (chainSearch.value || '').trim().toLowerCase(); const chains = knowledge.filter(k => (k.relatedOutputs||[]).length>0).filter(k => { const sec=(k.relatedSectors||[]).map(id=>sectorMap[id]||'').join(' '); const stk=(k.relatedStocks||[]).map(id=>stockMap[id]||'').join(' '); const out=(k.relatedOutputs||[]).map(id=>(outputMap[id]||{}).title||'').join(' '); const text=[k.title,k.category,sec,stk,out].join(' ').toLowerCase(); const filterOk=currentFilter==='all'||k.category===currentFilter; return filterOk&&(!q||text.includes(q)); }); filterChips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === currentFilter)); document.getElementById('chainCount').textContent = `共 ${chains.length} 条研究链路`; document.getElementById('chainGrid').innerHTML = chains.length ? chains.map(k => { const sec=(k.relatedSectors||[]).map(id=>sectorMap[id]||id).filter(Boolean)[0]||'—'; const stk=(k.relatedStocks||[]).map(id=>stockMap[id]||id).filter(Boolean)[0]||'—'; const outId=(k.relatedOutputs||[])[0]; const out=outputMap[outId]; return `<div class="chain-card"><div class="chain-title">${k.title}</div><div class="chain-path"><span class="chain-node">${k.category}</span><span class="chain-arrow">→</span><span class="chain-node">${sec}</span><span class="chain-arrow">→</span><span class="chain-node">${stk}</span><span class="chain-arrow">→</span><span class="chain-node">输出</span></div>${out ? `<div class="chain-footer"><a class="go" href="./outputs.html?q=${encodeURIComponent(out.title)}">${out.title} →</a></div>` : ''}</div>`; }).join('') : '<div class="empty">没有匹配到研究链路，换个关键词或分类试试。</div>'; syncUrl(); }
+  const catMap = {}; knowledge.forEach(k => { const c=k.category||'其他'; if(!catMap[c]) catMap[c]={total:0,done:0}; catMap[c].total++; if(k.status==='已完成') catMap[c].done++; }); document.getElementById('progGrid').innerHTML = Object.entries(catMap).map(([cat,val]) => { const pct=val.total?Math.round(val.done/val.total*100):0; return `<div class="prog-card"><div class="prog-label">${cat}</div><div class="prog-bar-bg"><div class="prog-bar" style="width:${pct}%"></div></div><div class="prog-val">${val.done} / ${val.total} · ${pct}%</div></div>`; }).join('');
+  renderChains(); chainSearch.addEventListener('input', renderChains); filterChips.forEach(chip => chip.addEventListener('click', () => { currentFilter = chip.dataset.filter; renderChains(); }));
+}).catch(err=>{ console.error(err); document.getElementById('kpiGrid').innerHTML = '<div class="kpi-card">数据加载失败</div>'; });
+</script>
+</body>
+</html>
